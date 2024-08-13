@@ -9,16 +9,21 @@ public class ProdutoTest {
         Locale.setDefault(Locale.US);  
         Scanner sc = new Scanner(System.in);  
         
-        Produto produto = new Produto();
 
         System.out.println("Enter product data: ");
         System.out.print("Name: ");
-        produto.name = sc.nextLine();
+        String name = sc.nextLine();
         System.out.print("Price: ");
-        produto.price = sc.nextDouble();
-        System.out.print("Quantity in stock: ");
-        produto.quantity = sc.nextInt();
+        double price = sc.nextDouble();
+        Produto produto = new Produto(name, price);
         System.out.println();
+
+
+        produto.setName("Computador");
+        System.out.println("Updated name: " + produto.getName());
+        produto.setPrice(1200.00);
+        System.out.println("Updated price: " + produto.getPrice());
+        
 
         System.out.println("Product data: " + produto);
 
