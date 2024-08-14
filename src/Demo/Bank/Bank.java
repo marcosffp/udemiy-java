@@ -12,6 +12,12 @@ public class Bank {
     this.nome = nome;
   }
 
+  public Bank(int numeroConta, String nome,double initialDeposit) {
+    this.numeroConta = numeroConta;
+    this.nome = nome;
+    depositoNaConta(initialDeposit);
+  }
+
   public int getNumeroConta() {
     return numeroConta;
   }
@@ -29,7 +35,7 @@ public class Bank {
   }
 
   public void saqueNaConta(double saqueNaConta) {
-    saldoConta -= saqueNaConta - TAXA;
+    saldoConta -= saqueNaConta + TAXA;
   }
 
   public double getSaldoConta() {
@@ -41,7 +47,7 @@ public class Bank {
         + getNumeroConta()
         + ", Holder: "
         + getNome()
-        + ", Balance"
-        + getSaldoConta();
+        + ", Balance: $ "
+        + String.format("%.2f", getSaldoConta());
   }
 }
