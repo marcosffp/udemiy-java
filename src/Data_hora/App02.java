@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-
 public class App02 {
   public static void main(String[] args) {
 
@@ -14,9 +13,12 @@ public class App02 {
     LocalDate d04 = LocalDate.parse("2024-08-15");
     LocalDateTime d05 = LocalDateTime.parse("2024-08-15T01:30:26");
     Instant d06 = Instant.parse("2024-08-15T01:30:26Z");
-
+    
+    //Data-hora ➞ Texto ISO 8601
     DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+    // Data-hora ➞ Texto formato customizado
     DateTimeFormatter fmt3 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault());
     DateTimeFormatter fmt4 = DateTimeFormatter.ISO_DATE_TIME;
     DateTimeFormatter fmt5 = DateTimeFormatter.ISO_INSTANT;

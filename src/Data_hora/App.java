@@ -8,23 +8,28 @@ import java.time.format.DateTimeFormatter;
 public class App {
   public static void main(String[] args) {
 
+    // Texto formato customizado ➞ Data-hora
     DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    LocalDate d01 = LocalDate.now();
-    LocalDateTime d02 = LocalDateTime.now();
-    Instant d03 = Instant.now();
+    // (agora) ➞ Data-hora
+    LocalDate d01 = LocalDate.now();/*local */
+    LocalDateTime d02 = LocalDateTime.now(); /*local */
+    Instant d03 = Instant.now();/*global */
 
-    LocalDate d04 = LocalDate.parse("2024-08-15");
-    LocalDateTime d05 = LocalDateTime.parse("2024-08-15T01:30:26");
-    Instant d06 = Instant.parse("2024-08-15T01:30:26Z");
-    Instant d07 = Instant.parse("2024-08-15T01:30:26-03:00");
+    // Texto ISO 8601 ➞ Data-hora
+    LocalDate d04 = LocalDate.parse("2024-08-15"); /*local */
+    LocalDateTime d05 = LocalDateTime.parse("2024-08-15T01:30:26"); /*local */
+    Instant d06 = Instant.parse("2024-08-15T01:30:26Z");/*global */
+    Instant d07 = Instant.parse("2024-08-15T01:30:26-03:00"); /*global */
 
-    LocalDate d08 = LocalDate.parse("15/08/2024", fmt1);
-    LocalDateTime d09 = LocalDateTime.parse("15/08/2024 01:30", fmt2);
+    // Texto formato customizado ➞ Data-hora
+    LocalDate d08 = LocalDate.parse("15/08/2024", fmt1);/*local */
+    LocalDateTime d09 = LocalDateTime.parse("15/08/2024 01:30", fmt2); /*local */
 
-    LocalDate d10 = LocalDate.of(2024, 8, 15);
-    LocalDateTime d11 = LocalDateTime.of(2024, 8, 15, 8, 46, 23);
+    // dia, mês, ano, [horário] ➞ Data-hora local
+    LocalDate d10 = LocalDate.of(2024, 8, 15);/*local */
+    LocalDateTime d11 = LocalDateTime.of(2024, 8, 15, 8, 46, 23);/*local */
 
 
     System.out.println("d01: " + d01.toString());
