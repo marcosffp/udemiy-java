@@ -1,8 +1,8 @@
 package demo;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Ordem {
@@ -66,12 +66,25 @@ public class Ordem {
     sb.append("Ordem sumário\n");
     sb.append("Momento da ordem: " + sdf.format(momento) + "\n");
     sb.append("Status da ordem: " + statusPedido.name() + "\n");
-    sb.append("Cliente: " + cliente.getNome() + " (" + sdf2.format(cliente.getDataAniversario()) + ") - "
-        + cliente.getEmail() + "\n");
+    sb.append(
+        "Cliente: "
+            + cliente.getNome()
+            + " ("
+            + sdf2.format(cliente.getDataAniversario())
+            + ") - "
+            + cliente.getEmail()
+            + "\n");
     sb.append("Ordem dos itens:\n");
     for (ItemPedido itemPedido : itemPedidos) {
-      sb.append(itemPedido.getProduto().getNome() + ", " + itemPedido.getPreco() + ", Quantidade: "
-          + itemPedido.getQuantidade() + ", Subtotal: " + String.format("%.2f", itemPedido.subTotal()));
+      sb.append(
+          itemPedido.getProduto().getNome()
+              + ", $"
+              + String.format("%.2f", itemPedido.getPreco())
+              + ", Quantidade: "
+              + itemPedido.getQuantidade()
+              + ", Subtotal: $"
+              + String.format("%.2f", itemPedido.subTotal()));
+      sb.append("\n");
     }
     return sb.toString();
   }
