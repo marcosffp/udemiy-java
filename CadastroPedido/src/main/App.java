@@ -6,7 +6,6 @@ import demo.Ordem;
 import demo.Produto;
 import demo.StatusPedido;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.Scanner;
 public class App {
   public static void main(String[] args) throws Exception {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
 
     List<ItemPedido> itemPedidos = new ArrayList<>();
 

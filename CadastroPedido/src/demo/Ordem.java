@@ -66,7 +66,7 @@ public class Ordem {
     sb.append("Ordem sumário\n");
     sb.append("Momento da ordem: " + sdf.format(momento) + "\n");
     sb.append("Status da ordem: " + statusPedido.name() + "\n");
-    sb.append("Cliente: " + cliente.getNome() + " (" + sdf.format(cliente.getDataAniversario()) + ") - "
+    sb.append("Cliente: " + cliente.getNome() + " (" + sdf2.format(cliente.getDataAniversario()) + ") - "
         + cliente.getEmail() + "\n");
     sb.append("Ordem dos itens:\n");
     for (ItemPedido itemPedido : itemPedidos) {
