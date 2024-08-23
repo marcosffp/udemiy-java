@@ -31,7 +31,9 @@ public class SolucaoBoa {
       System.out.print("Check-out date (dd/mm/aaaa): ");
       checkOut = sdf.parse(sc.next());
 
+
       reservation.updateDates(checkIn, checkOut);
+      
 
       System.out.println("Reservation: " + reservation);
     } catch (ParseException e) {
