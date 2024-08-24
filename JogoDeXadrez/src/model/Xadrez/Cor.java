@@ -1,5 +1,6 @@
 package model.Xadrez;
 
 public enum Cor {
-  PRETO, BRANCO;
+  PRETO,
+  BRANCO;
 }

@@ -6,7 +6,7 @@ public class Tabuleiro {
   private Peca[][] pecas;
 
   public Tabuleiro(int linhas, int colunas) {
-    if (linhas<1|| colunas<1) {
+    if (linhas < 1 || colunas < 1) {
       throw new TabuleiroException(
           "Erro ao criar o tabuleiro: deve haver pelo menos 1 linha e 1 coluna");
     }
@@ -24,7 +24,7 @@ public class Tabuleiro {
   }
 
   public Peca peca(int linha, int coluna) {
-    if (!isExistePosicao(linha,coluna)) {
+    if (!isExistePosicao(linha, coluna)) {
       throw new TabuleiroException("Não existe essa posição no tabuleiro");
     }
     return pecas[linha][coluna];
@@ -44,7 +44,6 @@ public class Tabuleiro {
     pecas[posicao.getLinha()][posicao.getColuna()] = peca;
     peca.posicao = posicao;
   }
-
 
   public Peca removerPeca(Posicao posicao) {
     if (!isExistePosicao(posicao)) {
@@ -74,4 +73,3 @@ public class Tabuleiro {
     return peca(posicao) != null;
   }
 }
-

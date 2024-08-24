@@ -28,13 +28,14 @@ public class UI {
   public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
   public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
-   try{ String s = sc.nextLine();
-    char coluna = s.charAt(0);
-    int linha = Integer.parseInt(s.substring(1));
-    return new PosicaoXadrez(coluna, linha);
+    try {
+      String s = sc.nextLine();
+      char coluna = s.charAt(0);
+      int linha = Integer.parseInt(s.substring(1));
+      return new PosicaoXadrez(coluna, linha);
     } catch (RuntimeException e) {
       throw new InputMismatchException(
-          "Error reading Chess Position. Valid values are from a1 to h8");
+          "Erro ao ler a posição do xadrez. Os valores válidos são de a1 a h8");
     }
   }
 
@@ -42,7 +43,7 @@ public class UI {
     for (int i = 0; i < pecaDeXadrezs.length; i++) {
       System.out.print((8 - i) + " ");
       for (int j = 0; j < pecaDeXadrezs.length; j++) {
-        printPeca(pecaDeXadrezs[i][j],false);
+        printPeca(pecaDeXadrezs[i][j], false);
       }
       System.out.println();
     }
@@ -64,4 +65,5 @@ public class UI {
     }
     System.out.print(" ");
   }
+  
 }
