@@ -1,8 +1,12 @@
 package model.main;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import model.Xadrez.Cor;
+import model.Xadrez.PartidaDeXadrez;
 import model.Xadrez.PecaDeXadrez;
 import model.Xadrez.PosicaoXadrez;
 
@@ -27,6 +31,11 @@ public class UI {
   public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
   public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+  public static void limparTela() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
+
   public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
     try {
       String s = sc.nextLine();
@@ -39,11 +48,42 @@ public class UI {
     }
   }
 
+  public static void printXadrez(PartidaDeXadrez partidaDeXadrez, List<PecaDeXadrez> capturadas) {
+    printTabuleiro(partidaDeXadrez.getPecas());
+    System.out.println();
+    printPecasCapturadas(capturadas);
+    System.out.println();
+    System.out.println("Turno: " + partidaDeXadrez.getTurno());
+    if (!(partidaDeXadrez.getCheck())) {
+      System.out.println("Aguardando o jogador(a): " + partidaDeXadrez.getJogadorAtual());
+
+      if (partidaDeXadrez.getCheck()) {
+        System.out.println("CHECK!");
+      }
+    } else {
+      System.out.println("CHECKMATE!");
+      System.out.println("Winner: "+partidaDeXadrez.getJogadorAtual());
+    }
+  }
+
   public static void printTabuleiro(PecaDeXadrez[][] pecaDeXadrezs) {
     for (int i = 0; i < pecaDeXadrezs.length; i++) {
       System.out.print((8 - i) + " ");
       for (int j = 0; j < pecaDeXadrezs.length; j++) {
         printPeca(pecaDeXadrezs[i][j], false);
+      }
+      System.out.println();
+    }
+    System.out.println("  a b c d e f g h");
+  }
+
+
+  public static void printTabuleiro(
+      PecaDeXadrez[][] pecaDeXadrezs, boolean[][] isMovimentosPossiveis) {
+    for (int i = 0; i < pecaDeXadrezs.length; i++) {
+      System.out.print((8 - i) + " ");
+      for (int j = 0; j < pecaDeXadrezs.length; j++) {
+        printPeca(pecaDeXadrezs[i][j], isMovimentosPossiveis[i][j]);
       }
       System.out.println();
     }
@@ -65,5 +105,21 @@ public class UI {
     }
     System.out.print(" ");
   }
-  
+
+  private static void printPecasCapturadas(List<PecaDeXadrez> capturadas) {
+    List<PecaDeXadrez> branca =
+        capturadas.stream().filter(x -> x.getCor() == Cor.BRANCO).collect(Collectors.toList());
+    List<PecaDeXadrez> preta =
+        capturadas.stream().filter(x -> x.getCor() == Cor.PRETO).collect(Collectors.toList());
+
+    System.out.println("Peças capturadas: ");
+    System.out.print("Brancas: ");
+    System.out.print(ANSI_WHITE);
+    System.out.println(Arrays.toString(branca.toArray()));
+    System.out.print(ANSI_RESET);
+    System.out.print("Pretas: ");
+    System.out.print(ANSI_YELLOW);
+    System.out.println(Arrays.toString(preta.toArray()));
+    System.out.print(ANSI_RESET);
+  }
 }
