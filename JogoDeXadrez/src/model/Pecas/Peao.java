@@ -3,12 +3,15 @@ package model.Pecas;
 import model.JogoDeTabuleiro.Posicao;
 import model.JogoDeTabuleiro.Tabuleiro;
 import model.Xadrez.Cor;
+import model.Xadrez.PartidaDeXadrez;
 import model.Xadrez.PecaDeXadrez;
 
 public class Peao extends PecaDeXadrez {
+  private PartidaDeXadrez partidaDeXadrez;
 
-  public Peao(Tabuleiro tabuleiro, Cor cor) {
+  public Peao(Tabuleiro tabuleiro, Cor cor,PartidaDeXadrez partidaDeXadrez) {
     super(tabuleiro, cor);
+    this.partidaDeXadrez = partidaDeXadrez;
   }
 
   @Override
@@ -37,6 +40,13 @@ public class Peao extends PecaDeXadrez {
       aux.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
       if (getTabuleiro().isExistePosicao(aux) && isExisteUmaPecaOponente(aux)) {
         mat[aux.getLinha()][aux.getColuna()] = true;
+      }
+      //Movimento especial en passant (branca)
+      if (posicao.getLinha()==3) {
+        Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+        if (getTabuleiro().isExistePosicao(esquerda)&&isExisteUmaPecaOponente(esquerda)&&getTabuleiro().peca(esquerda)==partidaDeXadrez.getVulneravelAEnPassant()) {
+          mat[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
+        }
       }
     } else {
       aux.setValores(posicao.getLinha() + 1, posicao.getColuna());
