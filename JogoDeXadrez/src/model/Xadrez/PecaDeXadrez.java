@@ -6,6 +6,7 @@ import model.JogoDeTabuleiro.Tabuleiro;
 
 public abstract class PecaDeXadrez extends Peca {
   private Cor cor;
+  private int contadorMovimento;
 
   public PecaDeXadrez(Tabuleiro tabuleiro, Cor cor) {
     super(tabuleiro);
@@ -14,6 +15,18 @@ public abstract class PecaDeXadrez extends Peca {
 
   public Cor getCor() {
     return cor;
+  }
+
+  public int getContadorMovimento() {
+    return contadorMovimento;
+  }
+
+  public void incrementarContadorMovimento() {
+    contadorMovimento++;
+  }
+
+  public void decrementarContadorMovimento() {
+    contadorMovimento--;
   }
 
   public PosicaoXadrez getPosicaoXadrez() {

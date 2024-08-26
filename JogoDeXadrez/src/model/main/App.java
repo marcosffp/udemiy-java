@@ -17,7 +17,7 @@ public class App {
     PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
     List<PecaDeXadrez> capturadas = new ArrayList<>();
 
-    while (!partidaDeXadrez.getCheck()) {
+    while (!partidaDeXadrez.isCheckMate()) {
       try {
         UI.limparTela();
         UI.printXadrez(partidaDeXadrez, capturadas);
