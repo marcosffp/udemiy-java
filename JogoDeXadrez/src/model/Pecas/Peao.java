@@ -9,7 +9,7 @@ import model.Xadrez.PecaDeXadrez;
 public class Peao extends PecaDeXadrez {
   private PartidaDeXadrez partidaDeXadrez;
 
-  public Peao(Tabuleiro tabuleiro, Cor cor,PartidaDeXadrez partidaDeXadrez) {
+  public Peao(Tabuleiro tabuleiro, Cor cor, PartidaDeXadrez partidaDeXadrez) {
     super(tabuleiro, cor);
     this.partidaDeXadrez = partidaDeXadrez;
   }
@@ -41,11 +41,19 @@ public class Peao extends PecaDeXadrez {
       if (getTabuleiro().isExistePosicao(aux) && isExisteUmaPecaOponente(aux)) {
         mat[aux.getLinha()][aux.getColuna()] = true;
       }
-      //Movimento especial en passant (branca)
-      if (posicao.getLinha()==3) {
+      // Movimento especial en passant (branca)
+      if (posicao.getLinha() == 3) {
         Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
-        if (getTabuleiro().isExistePosicao(esquerda)&&isExisteUmaPecaOponente(esquerda)&&getTabuleiro().peca(esquerda)==partidaDeXadrez.getVulneravelAEnPassant()) {
+        if (getTabuleiro().isExistePosicao(esquerda)
+            && isExisteUmaPecaOponente(esquerda)
+            && getTabuleiro().peca(esquerda) == partidaDeXadrez.getVulneravelAEnPassant()) {
           mat[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
+        }
+        Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+        if (getTabuleiro().isExistePosicao(direita)
+            && isExisteUmaPecaOponente(direita)
+            && getTabuleiro().peca(direita) == partidaDeXadrez.getVulneravelAEnPassant()) {
+          mat[direita.getLinha() - 1][direita.getColuna()] = true;
         }
       }
     } else {
@@ -69,6 +77,21 @@ public class Peao extends PecaDeXadrez {
       aux.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
       if (getTabuleiro().isExistePosicao(aux) && isExisteUmaPecaOponente(aux)) {
         mat[aux.getLinha()][aux.getColuna()] = true;
+      }
+      // Movimento especial en passant (preta)
+      if (posicao.getLinha() == 4) {
+        Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+        if (getTabuleiro().isExistePosicao(esquerda)
+            && isExisteUmaPecaOponente(esquerda)
+            && getTabuleiro().peca(esquerda) == partidaDeXadrez.getVulneravelAEnPassant()) {
+          mat[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
+        }
+        Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+        if (getTabuleiro().isExistePosicao(direita)
+            && isExisteUmaPecaOponente(direita)
+            && getTabuleiro().peca(direita) == partidaDeXadrez.getVulneravelAEnPassant()) {
+          mat[direita.getLinha() + 1][direita.getColuna()] = true;
+        }
       }
     }
 

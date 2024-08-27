@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
 import model.Xadrez.PartidaDeXadrez;
 import model.Xadrez.PecaDeXadrez;
 import model.Xadrez.PosicaoXadrez;
-import model.Xadrez.XadrezException; 
+import model.Xadrez.XadrezException;
 
 public class App {
   public static void main(String[] args) {
@@ -36,6 +35,21 @@ public class App {
         PecaDeXadrez pecaCapturada = partidaDeXadrez.executarMovimentoXadrez(origem, destino);
         if (pecaCapturada != null) {
           capturadas.add(pecaCapturada);
+        }
+
+        if (partidaDeXadrez.getPromocao() != null) {
+          System.out.print("Escolha o tipo de peça para a promoção (B/C/T/Q): ");
+          String tipo = sc.nextLine().toUpperCase();
+          while (!tipo.equals("B")
+              && !tipo.equals("C")
+              && !tipo.equals("P")
+              && !tipo.equals("Q")
+              && !tipo.equals("R")
+              && !tipo.equals("T")) {
+            System.out.print("Inválido valor! Escolha o tipo de peça para a promoção (B/C/T/Q): ");
+            tipo = sc.nextLine().toUpperCase();
+          }
+          partidaDeXadrez.substituirPecaPromocao(tipo);
         }
       } catch (XadrezException e) {
         System.out.println(e.getMessage());
